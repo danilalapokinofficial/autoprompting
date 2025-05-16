@@ -25,7 +25,7 @@
 * `src/methods/ptcprl_method_roberta.ipynb`
 * `src/methods/ptcprl_method_falcon.ipynb`
 
-## Установка
+## Зависимости
 
 ```bash
 > pytest
