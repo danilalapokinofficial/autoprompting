@@ -1,6 +1,6 @@
-# Auto-Prompting Framework
+# CRL-Prompt: Contrastive and Reinforcement Learning for Soft Prompt Tuning of Language Models
 
-**Auto-Prompting Framework** is a universal tool for automated prompt generation, optimization, and evaluation for large language models (LLMs).
+**CRL-Prompt** is a universal tool for automated prompt generation, optimization, and evaluation for large language models (LLMs). This repository contains the implementation for the paper *CRL-Prompt: Contrastive and Reinforcement Learning for Soft Prompt Tuning of Language Models*, submitted to CIKM 2025.
 
 ## About the Project
 
@@ -77,7 +77,8 @@ python src/run_experiment.py --config-name ag_news_prompt_v1_roberta_base
 To partially override parameters:
 
 ```bash
-python src/run_experiment.py --config-name ag_news_prompt_v1_roberta_base method_cfg.num_candidates=10 training.max_epochs=3
+python src/run_experiment.py --config-name ag_news_prompt_v1_roberta_base \
+    method_cfg.num_candidates=10 training.max_epochs=3
 ```
 
 ### Results
