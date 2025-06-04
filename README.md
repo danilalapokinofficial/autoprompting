@@ -1,44 +1,33 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\usepackage{geometry}
-\geometry{margin=1in}
+# Auto-Prompting Framework
 
-\title{Auto-Prompting Framework}
-\date{}
+**Auto-Prompting Framework** is a universal tool for automated prompt generation, optimization, and evaluation for large language models (LLMs).
 
-\begin{document}
-\maketitle
+## About the Project
 
-\section*{Auto-Prompting Framework}
-\textbf{Auto-Prompting Framework} is a universal tool for automated prompt generation, optimization, and evaluation for large language models (LLMs).
-
-\section{About the Project}
 This project implements a framework for automatically developing prompts aimed at solving text classification and generation tasks. Main features include:
-\begin{itemize}
-    \item \textbf{Prompt Optimization Methods}:
-    \begin{itemize}
-        \item PromptV1 and PromptV2 (hard token prompts).
-        \item Mixture Soft Prompting (blended soft tokens).
-        \item TextGrad (gradient-based optimization).
-        \item Consprompt (contrastive optimization).
-        \item Prewrite RL (reinforcement learning).
-        \item APE (automated evolutionary search).
-    \end{itemize}
-    \item \textbf{Experiment Support} via Hydra + YAML configurations.
-    \item \textbf{Integration} with \texttt{transformers}, \texttt{datasets}, \texttt{evaluate}, and \texttt{openai}.
-    \item \textbf{Unit Tests} based on \texttt{pytest} for each method implementation.
-\end{itemize}
 
-\section{Examples of Using a Custom Method}
+* **Prompt Optimization Methods**:
+
+  * PromptV1 and PromptV2 (hard token prompts).
+  * Mixture Soft Prompting (blended soft tokens).
+  * TextGrad (gradient-based optimization).
+  * Consprompt (contrastive optimization).
+  * Prewrite RL (reinforcement learning).
+  * APE (automated evolutionary search).
+* **Experiment Support** via Hydra + YAML configurations.
+* **Integration** with `transformers`, `datasets`, `evaluate`, and `openai`.
+* **Unit Tests** based on `pytest` for each method implementation.
+
+## Examples of Using a Custom Method
+
 The implementation of our custom method for Falcon and RoBERTa-base on AG News, SST-2, and TREC can be found in the notebooks:
-\begin{itemize}
-    \item \texttt{src/methods/ptcprl\_method\_roberta.ipynb}
-    \item \texttt{src/methods/ptcprl\_method\_falcon.ipynb}
-\end{itemize}
 
-\section{Dependencies}
-\begin{verbatim}
+* `src/methods/ptcprl_method_roberta.ipynb`
+* `src/methods/ptcprl_method_falcon.ipynb`
+
+## Dependencies
+
+```bash
 > pytest
 > torch
 > transformers
@@ -48,10 +37,11 @@ The implementation of our custom method for Falcon and RoBERTa-base on AG News, 
 > omegaconf
 > tqdm
 > openai
-\end{verbatim}
+```
 
-\section{Project Structure}
-\begin{verbatim}
+## Project Structure
+
+```
 .
 ├── configs/               # YAML configuration files for experiments
 ├── src/                   # Source code of the framework
@@ -64,43 +54,46 @@ The implementation of our custom method for Falcon and RoBERTa-base on AG News, 
 ├── run_all_experiments.ps1# Script to run all configurations (Windows)
 ├── pytest.ini             # Pytest configuration
 └── README.md              # This file
-\end{verbatim}
+```
 
-\section{Usage}
-\subsection{Configuration}
-All \texttt{.yaml} files in the \texttt{configs} folder describe the combination:
-\begin{verbatim}
+## Usage
+
+### Configuration
+
+All `.yaml` files in the `configs` folder describe the combination:
+
+```
 <dataset>_<method>_<model>.yaml
-\end{verbatim}
-For example: \texttt{ag\_news\_prompt\_v1\_roberta\_base.yaml}.
+```
 
-\subsection{Running an Experiment}
-\begin{verbatim}
+For example: `ag_news_prompt_v1_roberta_base.yaml`.
+
+### Running an Experiment
+
+```bash
 python src/run_experiment.py --config-name ag_news_prompt_v1_roberta_base
-\end{verbatim}
+```
+
 To partially override parameters:
-\begin{verbatim}
-python src/run_experiment.py --config-name ag_news_prompt_v1_roberta_base \
-    method_cfg.num_candidates=10 training.max_epochs=3
-\end{verbatim}
 
-\subsection{Results}
-\begin{itemize}
-    \item Training logs are saved to \texttt{outputs/exp\_name/YYYY-MM-DD\_HH-MM-SS/}.
-    \item Epoch metrics are stored in \texttt{epoch\_metrics.jsonl}.
-\end{itemize}
+```bash
+python src/run_experiment.py --config-name ag_news_prompt_v1_roberta_base method_cfg.num_candidates=10 training.max_epochs=3
+```
 
-\section{Testing}
-\begin{verbatim}
+### Results
+
+* Training logs are saved to `outputs/exp_name/YYYY-MM-DD_HH-MM-SS/`.
+* Epoch metrics are stored in `epoch_metrics.jsonl`.
+
+## Testing
+
+```bash
 pytest
-\end{verbatim}
+```
 
-\section{Adding a New Method}
-\begin{enumerate}
-    \item Create a new Runner class in \texttt{src/methods}, following the pattern of existing ones.
-    \item Add an entry to the \texttt{\_METHODS} dictionary in \texttt{src/run\_experiment.py}.
-    \item Write a YAML config file in \texttt{configs}.
-    \item Add tests under \texttt{tests/}.
-\end{enumerate}
+## Adding a New Method
 
-\end{document}
+1. Create a new Runner class in `src/methods`, following the pattern of existing ones.
+2. Add an entry to the `_METHODS` dictionary in `src/run_experiment.py`.
+3. Write a YAML config file in `configs`.
+4. Add tests under `tests/`.
