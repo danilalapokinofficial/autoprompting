@@ -95,6 +95,7 @@ def main(cfg: DictConfig):
         fp16=torch.cuda.is_available(),
         report_to="none",
         save_safetensors=False,
+        eval_accumulation_steps=10,
     )
     tracker = EpochTracker(out_dir)
     trainer = Trainer(
